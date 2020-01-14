@@ -2,12 +2,13 @@
 
 const mysql = require("mysql");
 const inquirer =  require("inquirer");
+const table =  require("console.table");
 
 var connection = mysql.createConnection({
     host: "localhost",
   
     // Your port; if not 3306
-    port: 80,
+    port: 3306,
   
     // Your username
     user: "root",
@@ -22,7 +23,7 @@ var connection = mysql.createConnection({
     
  
   });
-
+function mainApp(){
 inquirer
 
 .prompt([
@@ -31,13 +32,67 @@ inquirer
         name: "main",
         message: "What would you like to do?",
         choices: ["View Roles", "View Employees", "View Departments",
-        "Add employee", "Add Deparment", "Add Role", "Update employee role", 
+        "Add Employee", "Add Deparment", "Add Role", "Update employee role", 
         ]
 
     }
 
-]).then(answers => {
-    console.log('Answer:', answers.main);})
+]).then(function (answers){
+switch (answers){
+case "View Roles":
+
+
+
+break;
+
+case "View Employees":
+
+
+
+break;
+
+case "View Departments":
+
+
+
+break;
+
+case "Add Employee":
+
+
+
+break;
+
+
+case "Add Department":
+
+
+
+break;
+
+
+case "Add Role":
+
+
+
+break;
+
+
+case "Update employee role":
+
+
+
+break;
+
+
+
+
+
+}
+
+
+})
+    
 
 
     inquirer
@@ -87,18 +142,31 @@ inquirer
 
 
 
+}//ender for main app
 
 
 
+    
+    
+    
+    
+    
+    
+    
+    function viewEmployees(){
 
-    
-    
-    
-    
-    
-    
-    
-    // function viewEmployees()
+      const query = "SELECT employee.id, employee.first_name, employee.last_name FROM employee";
+      
+      connection.query(query, function(err, res){
+        if(err) throw err
+        for (i=0; i< res.length; i++){
+          console.table(res[i])
+        }
+        mainApp();
+      })
+
+
+    }
 
     // function viewRoles()
     
