@@ -7,19 +7,19 @@ var connection = mysql.createConnection({
     host: "localhost",
   
     // Your port; if not 3306
-    port: 3000,
+    port: 80,
   
     // Your username
     user: "root",
   
     // Your password
     password: "root",
-    database: "topsongs_db"
+    database: "employees_db"
   });
   
   connection.connect(function(err) {
     if (err) throw err;
-    console.log("connected as id " + connection.threadId);
+    
  
   });
 
@@ -40,6 +40,49 @@ inquirer
     console.log('Answer:', answers.main);})
 
 
+    inquirer
+
+.prompt([
+    {
+        type: "input",
+        name: "addEm",
+        message: "Input employee name, role, and department",
+      
+
+    }
+
+])
+
+.prompt([
+  {
+      type: "input",
+      name: "addrole",
+      message: "Input role info",
+    
+  }
+
+])
+
+.prompt([
+  {
+      type: "input",
+      name: "addDep",
+      message: "Input department info",
+    
+  }
+
+])
+
+.prompt([
+  {
+      type: "input",
+      name: "updateEm",
+      message: "Input employee id and updated role",
+    
+
+  }
+
+])
 
 
 
@@ -48,32 +91,21 @@ inquirer
 
 
 
+    
+    
+    
+    
+    
+    
+    
+    // function viewEmployees()
 
+    // function viewRoles()
+    
+    // function viewDepartments()
 
+    // function addDepartments()
+    // function addRoles() 
+    // function addEmployees()
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    function viewEmployees()
-
-    function viewRoles()
-    
-    function viewDepartments()
-
-    function addDepartments()
-    function addRoles() 
-    function addEmployees()
-
-    function updateRoles()
+    // function updateRoles()
