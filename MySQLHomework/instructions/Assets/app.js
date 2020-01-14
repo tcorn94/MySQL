@@ -38,3 +38,42 @@ inquirer
 
 ]).then(answers => {
     console.log('Answer:', answers.main);})
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    function viewEmployees()
+
+    function viewRoles()
+    
+    function viewDepartments()
+
+    function addDepartments()
+    function addRoles() 
+    function addEmployees()
+
+    function updateRoles()

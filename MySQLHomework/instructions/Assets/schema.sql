@@ -7,17 +7,11 @@ CREATE TABLE employee(
 
 --primary key
 
---name
---last name
+first_name VARCHAR(30)
+last_name VARCHAR(40)
+role_id INT(10) NOT NULL
+manager_id INT(10) NOT NULL
 
---role id
-
----manager id
-
-
-
---index role id
---index manager id
 
 ---foreign key
 FOREIGN KEY (role-id) REFERENCES employee
@@ -25,10 +19,17 @@ FOREIGN KEY (manager-id) REFERENCES
 
 )
 
-CREATE TABLE department ()
+CREATE TABLE department (
+    id 
+    name VARCHAR(30)
+
+)
 
 CREATE TABLE role (
     id 
+    title VARCHAR(30)
+    salary DECIMAL(6, 3)
+    department_id INT(10) NOT NULL
 )
 
 
