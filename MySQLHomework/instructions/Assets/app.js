@@ -38,7 +38,7 @@ inquirer
     }
 
 ]).then(function (answers){
-switch (answers){
+switch (answers.main){
 case "View Roles":
 
 viewRoles();
@@ -70,7 +70,7 @@ case "Add Employee":
   
       }
   
-  ]).then(addEmployees(answer));
+  ]).then(ans => addEmployees(ans.addEm));
   
 break;
 
@@ -85,7 +85,7 @@ case "Add Department":
       
     }
   
-  ]).then(addDepartments(answer));
+  ]).then(ans => addDepartments(ans.addDep));
 
 
 
@@ -103,7 +103,7 @@ case "Add Role":
       
     }
   
-  ]).then(addRoles(answer));
+  ]).then(ans => addRoles(ans.addrole));
 
 
 
@@ -123,11 +123,15 @@ inquirer
 name: "rolechange",
 message: "Input new role id"}
 
-]).then(DeleteRole(answer.updateEm));
-UpdateRole(answer.updateEm, answer.rolechange);
+]).then(ans => UpdateRole(ans.updateEm, ans.rolechange));
+
 
 
 break;
+default:
+mainApp();
+  
+
 
 
 }
@@ -163,7 +167,7 @@ break;
 
     function viewRoles(){
     const query = "SELECT * FROM role";
-      
+     
     connection.query(query, function(err, res){
       if(err) throw err
       for (i=0; i< res.length; i++){
@@ -185,9 +189,9 @@ break;
 
     }
 
-     function addDepartments(answer){
-      var sql = "INSERT INTO department (name) VALUES ('answer')";
-      con.query(sql, function (err, result) {
+     function addDepartments(ans){
+      var sql = `INSERT INTO department (name) VALUES ('${ans}')`;
+      connection.query(sql, function (err, result) {
         if (err) throw err;
         console.log("1 record inserted");
       });
@@ -196,36 +200,30 @@ break;
 
      }
 
-     function addRoles() {
-      var sql = "INSERT INTO role (title) VALUES ('answer')";
-      con.query(sql, function (err, result) {
+     function addRoles(ans) {
+      var sql = `INSERT INTO role (title) VALUES ('${ans}')`;
+      connection.query(sql, function (err, result) {
         if (err) throw err;
         console.log("1 record inserted");
       });
       mainApp();
      }
      
-     function addEmployees(){
-    var sql = "INSERT INTO department (first_name) VALUES ('answer')";
-    con.query(sql, function (err, result) {
+     function addEmployees(ans){
+    var sql = `INSERT INTO department (first_name) VALUES ('${ans}')`;
+    connection.query(sql, function (err, result) {
       if (err) throw err;
       console.log("1 record inserted");
       mainApp();
     });}
 
-    function DeleteRole(answer1){
+    
+    function UpdateRole(id, role){
 
-var sql = "DELETE FROM employee (role_id) WHERE id = answer.updateEm";
-      con.query(sql, function (err, result) {
-        if (err) throw err;
-        console.log("1 record deleted");
-      });
-    }
-
-    function UpdateRole(){
-      var sql = "INSERT INTO employee (role_id) WHERE id = answer.updateEm VALUES ('answer.rolechange')";
-      con.query(sql, function (err, result) {
+var sql = `UPDATE employee SET role_id = ${role} WHERE id = ${id}`;
+connection.query(sql, function (err, result) {
         if (err) throw err;
         console.log("1 record updated");
-        mainApp();
-      });}
+      });
+    }
+      mainApp();
