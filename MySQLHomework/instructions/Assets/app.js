@@ -32,7 +32,7 @@ inquirer
         name: "main",
         message: "What would you like to do?",
         choices: ["View Roles", "View Employees", "View Departments",
-        "Add Employee", "Add Deparment", "Add Role", "Update employee role", 
+        "Add Employee", "Add Department", "Add Role", "Update employee role", 
         ]
 
     }
@@ -210,7 +210,7 @@ mainApp();
      }
      
      function addEmployees(ans){
-    var sql = `INSERT INTO department (first_name) VALUES ('${ans}')`;
+    var sql = `INSERT INTO employee (first_name) VALUES ('${ans}')`;
     connection.query(sql, function (err, result) {
       if (err) throw err;
       console.log("1 record inserted");
